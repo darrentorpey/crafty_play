@@ -6,20 +6,18 @@ Crafty.scene('Game', function() {
 	this.player = Crafty.e('PlayerCharacter').at(5, 5);
 
 	// Place a tree at every edge square on our grid of 16x16 tiles
-	for (var x = 0; x < Game.mapGrid.width; x++) {
-		for (var y = 0; y < Game.mapGrid.height; y++) {
-			var at_edge = x === 0 || x === Game.mapGrid.width - 1 || y === 0 || y === Game.mapGrid.height - 1;
+	Game.mapGrid.eachTile(function(x, y) {
+		var atEdge = x === 0 || x === Game.mapGrid.width - 1 || y === 0 || y === Game.mapGrid.height - 1;
 
-			if (at_edge) {
-				// Place a tree entity at the current tile
-				Crafty.e('Tree').at(x, y);
-			} else if (Math.random() < 0.06 && !Grid.occupied(x, y)) {
-				// Place a bush entity at the current tile
-				var actorComponentName = (Math.random() > 0.3) ? 'Bush' : 'Rock';
-				Crafty.e(actorComponentName).at(x, y);
-			}
+		if (atEdge) {
+			// Place a tree entity at the current tile
+			Crafty.e('Tree').at(x, y);
+		} else if (Math.random() < 0.06 && !Grid.occupied(x, y)) {
+			// Place a bush entity at the current tile
+			var actorComponentName = (Math.random() > 0.3) ? 'Bush' : 'Rock';
+			Crafty.e(actorComponentName).at(x, y);
 		}
-	}
+	});
 
 	// Generate five villages on the map in random locations
 	var max_villages = 5;
