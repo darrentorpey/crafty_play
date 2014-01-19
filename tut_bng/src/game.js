@@ -30,6 +30,6 @@ Game = {
 		// Simply start the "Loading" scene to get things going
 		Crafty.scene('Loading');
 	}
-}
+};
 
-$text_css = { 'font-size': '24px', 'font-family': 'Arial', 'color': 'white', 'text-align': 'center' }
+$text_css = { 'size': '24px', 'family': 'Arial', 'color': 'red', 'text-align': 'center' };

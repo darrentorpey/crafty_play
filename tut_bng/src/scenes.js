@@ -70,7 +70,7 @@ Crafty.scene('Victory', function() {
 	Crafty.e('2D, DOM, Text')
 		.text('All villages visited!')
 		.attr({ x: 0, y: Game.height()/2 - 24, w: Game.width() })
-		.css($text_css);
+		.textFont($text_css);
 
 	// Give'em a round of applause!
 	Crafty.audio.play('applause');
@@ -84,8 +84,7 @@ Crafty.scene('Victory', function() {
 			Crafty.scene('Game');
 		}
 	};
-
-	this.restart_game = Crafty.bind('KeyDown', this.restart_game);
+	Crafty.bind('KeyDown', this.restart_game);
 }, function() {
 	// Remove our event binding from above so that we don't
 	//  end up having multiple redundant event watchers after
@@ -102,7 +101,7 @@ Crafty.scene('Loading', function(){
 	Crafty.e('2D, DOM, Text')
 		.text('Loading; please wait...')
 		.attr({ x: 0, y: Game.height()/2 - 24, w: Game.width() })
-		.css($text_css);
+		.textFont($text_css);
 
 	// Load our sprite map image
 	Crafty.load([
@@ -140,12 +139,12 @@ Crafty.scene('Loading', function(){
 
 		// Define our sounds for later use
 		Crafty.audio.add({
-			knock: 	  ['assets/door_knock_3x.mp3', 'assets/door_knock_3x.ogg', 'assets/door_knock_3x.aac'],
+			knock:    ['assets/door_knock_3x.mp3', 'assets/door_knock_3x.ogg', 'assets/door_knock_3x.aac'],
 			applause: ['assets/board_room_applause.mp3', 'assets/board_room_applause.ogg', 'assets/board_room_applause.aac'],
 			ring:     ['assets/candy_dish_lid.mp3', 'assets/candy_dish_lid.ogg', 'assets/candy_dish_lid.aac']
 		});
 
 		// Now that our sprites are ready to draw, start the game
 		Crafty.scene('Game');
-	})
+	});
 });
